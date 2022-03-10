@@ -9,7 +9,7 @@ int main()
     	int n;
 	int j, d, s;
 
-	printf("Unesite trocifren broj: ");
+	printf("Unesite troznamenkasti broj: ");
 	scanf("%d", &n);
 
 	if(n>=100 && n<=999){
