@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 int fib (int a, int b, int c){
-	int f0,f1,f2;
+	int f2;
 	f2=a+b;
 	if(c==1||c==2)return 1;
 	if(c==3)return f2;
@@ -13,5 +13,5 @@ int main (){
 int x;
 printf("Unesi broj\n");
 scanf("%d",&x);
-printf("%d",fib(x,x,x));
+printf("%d",fib(1,1,x));
 }
