@@ -1,38 +1,37 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 
-    struct zivotinja
-    {
-        char kakoSeGlasa[50];
-        int bn;
-        int visina;
-        char spec[20];
-    };
-
-
-    int main(void)
+struct zivotinja
 {
-       struct zivotinja z=("njiha njiha",4,230,"konj"
-                           "uu aa uu aa",2,75,"majmun");
+    char kako_se_glasa[50];
+    int broj_nogu;
+    int visina;
+    char spec[20];
+};
+      void broj_nogu(struct zivotinja*z){
+    printf("Ima %d noge\n\n", z->broj_nogu);
+      }
+
+    void glasanje(struct zivotinja*z){
+    printf("Glasa se %s\n", z->kako_se_glasa);
+    }
 
 
-        printf("Unesi podatke o zivotinji:\n");
-        printf("Unesi kako se glasa ta zivotinja\n");
-        scanf("%s", &z.kakoSeGlasa);
-        printf("Unesi koliko nogu ima ta životinja\n");
-        scanf("%d", &z.bn);
-        printf("Unesi kolika je visina te zivotinje\n");
-        scanf("%d", &z.visina);
-        printf("Unesi o kojoj se zivotinji govori:\n");
-        scanf("%s", &z.spec);
+int main(void)
+{
+    struct zivotinja z[3]={"mjau mjau",4,30,"macka"
+    "vau vau",4,40,"pas"};
 
+    printf("UNESI PODATKE O ZIVOTINJI:\n");
+    printf("Unesi kako se glasa zivotinja:\n");
+    scanf("%s", &z[2].kako_se_glasa);
+    printf("Unesi koliko zivotinja ima nogu:\n");
+    scanf("%d", &z[2].broj_nogu);
+    printf("Unesi visinu zivotinje u cm:\n");
+    scanf("%d", &z[2].visina);
+    printf("Unesi o kojoj se zivotinji radi:\n");
+    scanf("%s", &z[2].spec);
 
-        void bn(z);
-        printf("ima %d noge\n", z.bn);
-
-        void Glasanje(z);
-        printf("Glasa se %s\n", z.kakoSeGlasa);
-
-
-
+    broj_nogu(&z[2]);
+    glasanje(&z[2]);
 }
