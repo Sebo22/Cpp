@@ -1,62 +1,123 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<math.h>
 
-struct stablo_jabuka{
-int visina;
-int prosjecan_broj;
-int trenutno_jabuka;
-};
 
-void dodaj_u_dat(struct stablo_jabuka sj){
-FILE*filePointer;
-filePointer=fopen("stablo_jabuka.txt","a");
-fprintf(filePointer,"%d\t%d\t%d\n",sj.visina,sj.prosjecan_broj,sj.trenutno_jabuka);
-fclose(filePointer);
+struct mackick{
+                int br_zivota;
+                int br_nogu;
+                int visina;
+                char ime[20];
+                }m;
+
+void novi(){
+
+	FILE*filePointer;
+	filePointer=fopen("mackick.txt","w");
+
+	printf("koliko zivota ima mackick?");
+	scanf("%d", &m.br_zivota);
+	printf("koliko mackick ima nogu?");
+	scanf("%d", &m.br_nogu);
+	printf("kolika je visina mackicka?");
+	scanf("%d", &m.visina);
+	printf("ime mackicka?");
+	scanf("%s", m.ime);
+
+	fprintf(filePointer, "%d, %d, %d, %s", m.br_zivota, m.br_nogu, m.visina, m.ime);
+	fclose(filePointer);
 }
-void ukupno(){
-FILE*filePointer;
-filePointer=fopen("stablo_jabuka.txt","r");
-int sum=0;
-int a,s,c;
-struct stablo_jabuka temp;
+void maks(){
 
-while(fscanf(filePointer,"%d %d %d",&temp.visina, &temp.prosjecan_broj, &temp.trenutno_jabuka)==3){
-    sum+=temp.trenutno_jabuka;
-    visoka_stabla(temp);}
-printf("Ukupan broj jabuka je %d\n",sum);
-fclose(filePointer);
+	FILE*filePointer;
+	filePointer=fopen("mackick.txt","r");
+	char ovojenajvecamackicka[90];
+	int max=0,odabir;
+	printf("pocem os maxat?\n1.broj nogu\n2.broj zivota\n3.visina");
+	scanf("%d",&odabir);
+	while(fscanf(filePointer, "%d, %d, %d, %s", m.br_zivota, m.br_nogu, m.visina, m.ime)==4){
+        if(odabir==2)
+        if(m.br_zivota>=max){
+			max=m.br_zivota;
+			strcpy(ovojenajvecamackicka, m.ime);
+		}
+        if(odabir==1)
+            if(m.br_nogu>=max){
+			max=m.br_nogu;
+			strcpy(ovojenajvecamackicka, m.ime);
+		}
+        if(odabir==3)
+		if(m.visina>=max){
+			max=m.visina;
+			strcpy(ovojenajvecamackicka, m.ime);
+		}
+
+	}
+	printf("najveca je mackicka %s", ovojenajvecamackicka);
+
+
+	fclose(filePointer);
 }
 
-void visoka_stabla (struct stablo_jabuka sj){
-if (sj.visina>65)
-    printf("to stablo je visoko: %d cm i vislje je od 65cm\n",sj.visina);
-else printf("jako niska stabla moram rec\n");
+void mini(){
+
+	FILE*filePointer;
+	filePointer=fopen("mackick.txt","r");
+	char ovojenajmanjamackicka[90];
+	int min=0;
+	while(fscanf(filePointer, "%d, %d, %d, %s", m.br_zivota, m.br_nogu, m.visina, m.ime)==4){
+		if(m.visina>min){
+			min=m.visina;
+			strcpy(ovojenajmanjamackicka, m.ime);
+		}
+
+	}
+	printf("najmanja je mackicka %s", ovojenajmanjamackicka);
+
+
+	fclose(filePointer);
 }
+void ispis(){
 
-int main()
-{
-    int i;
-    char odg[5];
-    struct stablo_jabuka sj;
+	FILE*filePointer;
+	filePointer=fopen("mackick.txt","r");
 
-    do{
-    printf("unesi visinu stabla, prosjecan broj neceg  i koliko trenutacno ima jabuka\n");
-    scanf("%d %d %d",&sj.visina, &sj.prosjecan_broj, &sj.trenutno_jabuka);
-    dodaj_u_dat(sj);
-    ukupno();
-    printf("Ocemo opet??");
-    scanf("%s",odg);
-    }while(strcmp(odg,"ne"));
-    return 0;
+	while(fscanf(filePointer, "%d, %d, %d, %s", &m.br_zivota, &m.br_nogu, &m.visina, m.ime)==4){
+            printf("%d, %d, %d, %s\n\n", m.br_zivota, m.br_nogu, m.visina, m.ime);
+	}
+
+
+
+
+	fclose(filePointer);
+}
+int main(){
+
+
+int odabir;
+do{
+    printf("1. unesi novog mackicka\n");
+    printf("2.max\n");
+    printf("3.min\n");
+    printf("4.ispis\n");
+	printf("5.Exit\n");
+	scanf("%d",&odabir);
+
+if(odabir==1){
+	novi();}
+	else if(odabir==2){
+	maks();}
+    else if(odabir==3){
+	mini();}
+    else if(odabir==4){
+	ispis();}
+    else if(odabir==5){
+	printf("5.Exit\n");}
+
+} while (odabir!=5);
+
+
 
 
 }
-
-
-    }
-
-
-
-
